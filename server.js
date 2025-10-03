@@ -36,7 +36,7 @@ const Negociacao = mongoose.model("Negociacao", NegociacaoSchema);
 // ==================== ROTAS REGISTRO ====================
 
 // Listar registros
-app.get("/registros", async (req, res) => {
+app.get("/registro", async (req, res) => {
     try {
         const registros = await Registro.find();
         res.status(200).json(registros);
@@ -46,7 +46,7 @@ app.get("/registros", async (req, res) => {
 });
 
 // Criar registro
-app.post("/registros", async (req, res) => {
+app.post("/Registro", async (req, res) => {
     try {
         const novoRegistro = new Registro(req.body);
         await novoRegistro.save();
@@ -56,11 +56,11 @@ app.post("/registros", async (req, res) => {
     }
 });
 
-// Deletar registro por id
-app.delete("/registros/:id", async (req, res) => {
+// Deletar Registro por id
+app.delete("/Registro/:id", async (req, res) => {
     try {
-        const registro = await Registro.findByIdAndDelete(req.params.id);
-        if (!registro) return res.status(404).json({ erro: "Registro não encontrado" });
+        const Registro = await Registro.findByIdAndDelete(req.params.id);
+        if (!Registro) return res.status(404).json({ erro: "Registro não encontrado" });
         res.status(200).json({ message: "Registro deletado" });
     } catch (err) {
         res.status(500).json({ erro: err.message });
@@ -70,17 +70,17 @@ app.delete("/registros/:id", async (req, res) => {
 // ==================== ROTAS NEGOCIAÇÃO ====================
 
 // Listar negociações
-app.get("/negociacoes", async (req, res) => {
+app.get("/Negociar", async (req, res) => {
     try {
-        const negociacoes = await Negociacao.find();
-        res.status(200).json(negociacoes);
+        const Negociar = await Negociacao.find();
+        res.status(200).json(Negociar);
     } catch (err) {
         res.status(500).json({ erro: err.message });
     }
 });
 
 // Criar negociação
-app.post("/negociacoes", async (req, res) => {
+app.post("/Negociar", async (req, res) => {
     try {
         const novaNegociacao = new Negociacao(req.body);
         await novaNegociacao.save();
@@ -91,7 +91,7 @@ app.post("/negociacoes", async (req, res) => {
 });
 
 // Atualizar negociação
-app.put("/negociacoes/:id", async (req, res) => {
+app.put("/Negociar/:id", async (req, res) => {
     try {
         const negociacaoAtualizada = await Negociacao.findByIdAndUpdate(
             req.params.id,
@@ -106,7 +106,7 @@ app.put("/negociacoes/:id", async (req, res) => {
 });
 
 // Deletar negociação
-app.delete("/negociacoes/:id", async (req, res) => {
+app.delete("/Negociar/:id", async (req, res) => {
     try {
         const negociacao = await Negociacao.findByIdAndDelete(req.params.id);
         if (!negociacao) return res.status(404).json({ erro: "Negociação não encontrada" });
